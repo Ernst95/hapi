@@ -7,9 +7,12 @@
     "@hapi/hapi": "^19.1.1",
     "@hapi/hoek": "^9.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "author": "ernst95",
   "license": "ISC"
