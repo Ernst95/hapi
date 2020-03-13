@@ -1,19 +1,13 @@
 'use strict';
 
+const ObjectController = require('../../controllers/object');
+
 module.exports = [
     {
         method: 'GET',
         path: '/object',
         options: {
-            handler: function (request, h) {
-                const user = {
-                    firstName: 'John',
-                    lastName: 'Doe',
-                    userName: 'JohnDoe',
-                    id: 123
-                }
-                return user;
-            },
+            handler: ObjectController.getObjectOne,
             description: 'Get object',
             notes: 'Returns an object',
             tags: ['api', 'object'] // ADD THIS TAG
@@ -24,15 +18,7 @@ module.exports = [
         method: 'GET',
         path: '/objectnew',
         options: {
-            handler: function (request, h) {
-                const user = {
-                    firstName: 'Jane',
-                    lastName: 'Doe',
-                    userName: 'JaneDoe',
-                    id: 321
-                }
-                return user;
-            },
+            handler: ObjectController.getObjectTwo,
             description: 'Get object',
             notes: 'Returns an object',
             tags: ['api', 'object'] // ADD THIS TAG
