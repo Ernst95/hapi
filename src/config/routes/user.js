@@ -40,5 +40,73 @@ module.exports = [
                 })
             }
         }
+    },
+    {
+        method: 'POST',
+        path: '/user/signup',
+        options: {
+            handler: UserController.signup,
+            description: 'Sign up form',
+            notes: 'Sign up user',
+            tags: ['api', 'user'],
+            validate: {
+                payload: Joi.object({
+                    username: Joi.string()
+                                .alphanum()
+                                .min(3)
+                                .max(30)
+                                .required(),
+                    password: Joi.string()
+                                .min(8),
+                    repeat_password: Joi.string()
+                                .min(8),
+                    birth_year: Joi.number()
+                                    .integer()
+                                    .min(1900)
+                                    .max(2013),
+                    email: Joi.string()
+                                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+                })
+                .with('username', 'birth_year')
+                .with('password', 'repeat_password')
+                .label('Sign up model')
+            }
+        }
+    },
+    {
+        method: 'POST',
+        path: '/user/signup/form',
+        options: {
+            handler: UserController.signup,
+            description: 'Sign up form',
+            notes: 'Sign up user',
+            tags: ['api', 'user'],
+            plugins: {
+                'hapi-swagger': {
+                    payloadType: 'form'
+                }
+            },
+            validate: {
+                payload: Joi.object({
+                    username: Joi.string()
+                                .alphanum()
+                                .min(3)
+                                .max(30)
+                                .required(),
+                    password: Joi.string()
+                                .min(8),
+                    repeat_password: Joi.string()
+                                .min(8),
+                    birth_year: Joi.number()
+                                    .integer()
+                                    .min(1900)
+                                    .max(2013),
+                    email: Joi.string()
+                                .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+                })
+                .with('username', 'birth_year')
+                .with('password', 'repeat_password')
+            }
+        }
     }
 ]
